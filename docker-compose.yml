@@ -4,8 +4,14 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: postgrespassword
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=postgrespassword
+    ports:
+      - "5432:5432"
+
   web:
+    platform: linux/x86_64  # M1 Macなどで必要
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
