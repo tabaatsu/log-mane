@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'logmaneapp.apps.LogmaneappConfig',
     'tailwind',
-    'theme',
+    'theme3',
     'django_browser_reload',
 ]
 
@@ -138,8 +138,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# TailwindCSS settings
-TAILWIND_APP_NAME = "theme"
+TAILWIND_APP_NAME = 'theme3'
 
 INTERNAL_IPS = [
     "127.0.0.1",
