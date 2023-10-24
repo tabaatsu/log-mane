@@ -28,9 +28,9 @@ class Athlete_records(models.Model):
 
     athlete_id = models.ForeignKey(Athlete, on_delete=models.CASCADE)
     discipline = models.ForeignKey(Discipline, on_delete=models.PROTECT)
-    personal_best = models.DecimalField(verbose_name='自己ベスト')
-    university_best = models.DecimalField(verbose_name='大学ベスト')
-    valid_record = models.DecimalField(verbose_name='有効記録')
+    personal_best = models.DecimalField(verbose_name='自己ベスト', max_digits=10, decimal_places=2)
+    university_best = models.DecimalField(verbose_name='大学ベスト', max_digits=10, decimal_places=2)
+    valid_record = models.DecimalField(verbose_name='有効記録', max_digits=10, decimal_places=2)
     athlete_records_id = models.IntegerField(primary_key=True, unique=True)
 
     class Meta:
@@ -84,8 +84,8 @@ class Event_records(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     discipline = models.ForeignKey(Discipline, on_delete=models.PROTECT)
     stage = models.ForeignKey(Stage, on_delete=models.PROTECT)
-    record = models.DecimalField(verbose_name='記録')
-    wind = models.DecimalField(verbose_name='風速')
+    record = models.DecimalField(verbose_name='記録', max_digits=10, decimal_places=2)
+    wind = models.DecimalField(verbose_name='風速', max_digits=2, decimal_places=1)
     heat = models.CharField(max_length=10, verbose_name='組')
     place = models.CharField(max_length=100, verbose_name='順位')
     division = models.ForeignKey(Division, on_delete=models.PROTECT)
