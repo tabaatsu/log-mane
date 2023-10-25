@@ -2,7 +2,7 @@ from typing import Any
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Athlete, Discipline, Athlete_records, Event, Event_records
-from .forms import AthleteForm
+from .forms import AthleteForm, AthleteRecordsForm
 
 
 class IndexView(TemplateView):
@@ -34,3 +34,27 @@ def athleteForm(request):
         form = AthleteForm()
     context = {'form': form}
     return render(request, 'athlete_create.html', context)
+
+# def athleteRecordsForm(request):
+#     if request.method == 'POST':
+#         form = AthleteRecordsForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('logmaneapp:athlete_list')
+#     else:
+#         form = AthleteRecordsForm()
+#     context = {'form': form}
+#     return render(request, 'athlete_records_form.html', context)
+
+def athlete_records_form(request):
+    if request.method == 'POST':
+        form = AthleteRecordsForm(request.POST)
+        if form.is_valid():
+            athlete_record = form.save(commit=False)
+            # athlete_record.athlete = request.user.athlete
+            athlete_record.save()
+            return redirect('logmaneapp:athlete_list')
+    else:
+        form = AthleteRecordsForm()
+    context = {'form': form}
+    return render(request, 'athlete_records_form.html', context)

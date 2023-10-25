@@ -23,7 +23,6 @@
       </div>
     </div>
     <!-- End Grid -->
-  
     <!-- Table -->
     <div class="mt-6 border border-gray-200 p-4 rounded-lg space-y-4 dark:border-gray-700">
       <div class="hidden sm:grid sm:grid-cols-5">
@@ -32,9 +31,8 @@
         <div class="text-left text-xs font-medium text-gray-500 uppercase">大学ベスト</div>
         <div class="text-right text-xs font-medium text-gray-500 uppercase">有効記録</div>
       </div>
-  
+{% for athlete_record in athlete_records %}
       <div class="hidden sm:block border-b border-gray-200 dark:border-gray-700"></div>
-      {% for athlete_record in athlete_records %}
       <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
         <div class="col-span-full sm:col-span-2">
           <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">種目</h5>
@@ -51,11 +49,11 @@
         <div>
           <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">有効記録</h5>
           <p class="sm:text-right text-gray-800 dark:text-gray-200">{{ athlete_record.valid_record }}</p>
+
         </div>
-      {% endfor %}
       </div>
-  
-      
+{% endfor %}
+
       </div>
       <div class="mt-6 border border-gray-200 p-4 rounded-lg space-y-4 dark:border-gray-700">
         <div class="hidden sm:grid sm:grid-cols-5">
@@ -64,9 +62,8 @@
           <div class="text-left text-xs font-medium text-gray-500 uppercase">種目</div>
           <div class="text-right text-xs font-medium text-gray-500 uppercase">記録</div>
         </div>
-    
+{% for event_record in event_records %}
         <div class="hidden sm:block border-b border-gray-200 dark:border-gray-700"></div>
-        {% for event_record in event_records %}
         <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
           <div class="col-span-full sm:col-span-2">
             <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">大会名</h5>
@@ -84,8 +81,8 @@
             <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">記録</h5>
             <p class="sm:text-right text-gray-800 dark:text-gray-200">{{ event_record.record }}</p>
           </div>
-        {% endfor %}
         </div>
+{% endfor %}
     </div>
     <!-- End Table -->
   
