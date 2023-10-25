@@ -1,8 +1,8 @@
 from typing import Any
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Athlete, Discipline, Athlete_records, Event, Event_records
+from .forms import AthleteForm
 
 
 class IndexView(TemplateView):
@@ -23,3 +23,14 @@ class AthleteDetailView(DetailView):
         return context
     
     athlete = Athlete.objects.all()
+
+def athleteForm(request):
+    if request.method == 'POST':
+        form = AthleteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('logmaneapp:athlete_list')
+    else:
+        form = AthleteForm()
+    context = {'form': form}
+    return render(request, 'athlete_create.html', context)
