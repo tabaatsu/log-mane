@@ -8,7 +8,7 @@ class Athlete(models.Model):
     name = models.CharField(max_length=100, verbose_name='選手名')
     gender = models.CharField(max_length=10, verbose_name='性別')
     grade = models.CharField(max_length=10, verbose_name='学年')
-    group = models.CharField(max_length=10, verbose_name='パート')
+    group = models.CharField(max_length=10, verbose_name='パート', null=True)
 
     def __str__(self):
         return self.name
@@ -41,7 +41,7 @@ class Athlete_records(models.Model):
         ]
 
     def __str__(self):
-        return self.athlete_id
+        return str(self.athlete_id.athlete_id)
 
 
 class Event(models.Model):
@@ -99,4 +99,4 @@ class Event_records(models.Model):
         ]
 
     def __str__(self):
-        return self.athlete_id
+        return str(self.athlete_id.athlete_id)
