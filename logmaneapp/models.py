@@ -4,7 +4,7 @@ class Athlete(models.Model):
     class Meta:
         db_table = 'athlete'
 
-    athlete_id = models.IntegerField(primary_key=True, unique=True)
+    athlete_id = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=100, verbose_name='選手名')
     gender = models.CharField(max_length=10, verbose_name='性別')
     grade = models.CharField(max_length=10, verbose_name='学年')
@@ -18,7 +18,7 @@ class Discipline(models.Model):
     class Meta:
         db_table = 'discipline'
 
-    discipline_id = models.IntegerField(primary_key=True, unique=True)
+    discipline_id = models.AutoField(primary_key=True, unique=True)
     discipline = models.CharField(max_length=100, verbose_name='種目')
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Athlete_records(models.Model):
     personal_best = models.DecimalField(verbose_name='自己ベスト', max_digits=10, decimal_places=2)
     university_best = models.DecimalField(verbose_name='大学ベスト', max_digits=10, decimal_places=2)
     valid_record = models.DecimalField(verbose_name='有効記録', max_digits=10, decimal_places=2)
-    athlete_records_id = models.IntegerField(primary_key=True, unique=True)
+    athlete_records_id = models.AutoField(primary_key=True, unique=True)
 
     class Meta:
         db_table = 'athlete_records'
@@ -48,7 +48,7 @@ class Event(models.Model):
     class Meta:
         db_table = 'event'
 
-    event_id = models.IntegerField(primary_key=True, unique=True)
+    event_id = models.AutoField(primary_key=True, unique=True)
     event = models.CharField(max_length=100, verbose_name='大会名')
     date = models.DateField(verbose_name='日付')
 
@@ -60,7 +60,7 @@ class Stage(models.Model):
     class Meta:
         db_table = 'stage'
 
-    stage_id = models.IntegerField(primary_key=True, unique=True)
+    stage_id = models.AutoField(primary_key=True, unique=True)
     stage = models.CharField(max_length=100, verbose_name='ラウンド')
 
     def __str__(self):
@@ -71,7 +71,7 @@ class Division(models.Model):
     class Meta:
         db_table = 'division'
 
-    division_id = models.IntegerField(primary_key=True, unique=True)
+    division_id = models.AutoField(primary_key=True, unique=True)
     division = models.CharField(max_length=100, verbose_name='区分')
 
     def __str__(self):
@@ -90,7 +90,7 @@ class Event_records(models.Model):
     heat = models.CharField(max_length=10, verbose_name='組')
     place = models.CharField(max_length=100, verbose_name='順位')
     division = models.ForeignKey(Division, on_delete=models.PROTECT)
-    event_records_id = models.IntegerField(primary_key=True, unique=True)
+    event_records_id = models.AutoField(primary_key=True, unique=True)
 
     class Meta:
         db_table = 'event_records'
