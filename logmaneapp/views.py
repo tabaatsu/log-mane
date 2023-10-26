@@ -35,17 +35,6 @@ def athleteForm(request):
     context = {'form': form}
     return render(request, 'athlete_create.html', context)
 
-# def athleteRecordsForm(request):
-#     if request.method == 'POST':
-#         form = AthleteRecordsForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('logmaneapp:athlete_list')
-#     else:
-#         form = AthleteRecordsForm()
-#     context = {'form': form}
-#     return render(request, 'athlete_records_form.html', context)
-
 def athlete_records_form(request):
     if request.method == 'POST':
         form = AthleteRecordsForm(request.POST)
@@ -62,4 +51,10 @@ def athlete_records_form(request):
 class AthleteDelete(DeleteView):
     template_name = 'athlete_delete.html'
     model = Athlete
+    success_url = '/athlete/'
+
+class AthleteUpdate(UpdateView):
+    template_name = 'athlete_update.html'
+    model = Athlete
+    fields = (['name', 'grade', 'gender', 'group'])
     success_url = '/athlete/'
