@@ -11,4 +11,5 @@ urlpatterns = [
     path('athlete/records/', views.athlete_records_form, name='athlete_records'),
     path('athlete/<int:pk>/delete/', views.AthleteDelete.as_view(), name='athlete_delete'),
     path('athlete/<int:pk>/update/', views.AthleteUpdate.as_view(), name='athlete_update'),
+    path('athlete/<int:pk>/records/delete/', views.AthleteRecordsDelete.as_view(), name='athlete_records_delete'),
 ]

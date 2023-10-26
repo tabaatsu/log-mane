@@ -41,7 +41,7 @@ class Athlete_records(models.Model):
         ]
 
     def __str__(self):
-        return str(self.athlete_id.athlete_id)
+        return str(self.athlete_records_id)
 
 
 class Event(models.Model):

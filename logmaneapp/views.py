@@ -58,3 +58,8 @@ class AthleteUpdate(UpdateView):
     model = Athlete
     fields = (['name', 'grade', 'gender', 'group'])
     success_url = '/athlete/'
+
+class AthleteRecordsDelete(DeleteView):
+    template_name = 'athlete_records_delete.html'
+    model = Athlete_records
+    success_url = '/athlete/'
