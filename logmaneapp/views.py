@@ -58,3 +58,8 @@ def athlete_records_form(request):
         form = AthleteRecordsForm()
     context = {'form': form}
     return render(request, 'athlete_records_form.html', context)
+
+class AthleteDelete(DeleteView):
+    template_name = 'athlete_delete.html'
+    model = Athlete
+    success_url = '/athlete/'
