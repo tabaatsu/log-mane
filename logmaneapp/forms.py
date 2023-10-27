@@ -32,3 +32,13 @@ class AthleteRecordsForm(forms.ModelForm):
         self.fields['athlete_id'].empty_label = '選手名'
         self.fields['discipline'].queryset = Discipline.objects.all()
         self.fields['discipline'].empty_label = '種目'
+
+class EventForm(forms.ModelForm):
+
+        class Meta:
+            model = Event
+            fields = ('event', 'date')
+            labels = {
+                'event': '大会名',
+                'date': '日付'
+            }
