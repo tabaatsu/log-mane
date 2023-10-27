@@ -63,3 +63,9 @@ class AthleteRecordsDelete(DeleteView):
     template_name = 'athlete_records_delete.html'
     model = Athlete_records
     success_url = '/athlete/'
+
+class AthleteRecordsUpdate(UpdateView):
+    template_name = 'athlete_records_update.html'
+    model = Athlete_records
+    fields = (['personal_best', 'university_best', 'valid_record'])
+    success_url = '/athlete/'
