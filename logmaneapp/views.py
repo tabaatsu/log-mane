@@ -21,7 +21,7 @@ class AthleteDetailView(DetailView):
         context['athlete_records'] = Athlete_records.objects.filter(athlete_id=self.kwargs['pk'])
         context['event_records'] = Event_records.objects.filter(athlete_id=self.kwargs['pk'])
         return context
-    
+
     athlete = Athlete.objects.all()
 
 def athlete_form(request):
@@ -79,3 +79,8 @@ def event_form(request):
         form = EventForm()
     context = {'form': form}
     return render(request, 'event_create.html', context)
+
+class EventDelete(DeleteView):
+    template_name = 'event_delete.html'
+    model = Event
+    success_url = '/athlete/'
