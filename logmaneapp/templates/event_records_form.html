@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}記録登録{% endblock title %}
+{% block title %}大会記録登録{% endblock title %}
 
 {% block content %}
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <div class="max-w-xl mx-auto">
       <div class="text-center">
         <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
-          記録登録
+          大会記録登録
         </h1>
         <p class="mt-1 text-gray-600 dark:text-gray-400">
-            以下のフォームに選手の記録情報を入力してください。
+            以下のフォームに大会の記録を入力してください。
         </p>
       </div>
   
@@ -20,26 +20,35 @@
           {% csrf_token %}
           <div class="grid gap-4 lg:gap-6">
             <div>
-                <label for="{{ form.athlete_id.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">選手名</label>
+                <label for="{{ form.athlete_id.name.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">選手名</label>
                 {{ form.athlete_id }}
             </div>
             <div>
                 <label for="{{ form.discipline.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">種目</label>
-                {% comment %} <select type="text" name="discipline" id="discipline" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
-
-                </select> {% endcomment %}
                 {{ form.discipline }}
+            </div>
+            <div>
+                <label for="{{ form.event.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">大会名</label>
+                {{ form.event }}
+            </div>
+            <div>
+                <label for="{{ form.division.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">区分</label>
+                {{ form.division }}
+            </div>
+            <div>
+                <label for="{{ form.stage.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">ラウンド</label>
+                {{ form.stage }}
             </div>
             <!-- Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
               <div>
-                <label for="{{ form.personal_best.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">自己ベスト</label>
-                <input type="number" name="personal_best" id="personal_best" step="0.01" min=0 required class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                <label for="{{ form.record.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">記録</label>
+                <input type="number" required name="record" id="record" step="0.01" min=0 class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
               </div>
   
               <div>
-                <label for="{{ form.university_best.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">大学ベスト</label>
-                <input type="number" name="university_best" id="university_best" step="0.01" min=0  class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                <label for="{{ form.wind.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">風速</label>
+                <input type="number" required name="wind" id="wind" step="0.1" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
               </div>
             </div>
             <!-- End Grid -->
@@ -52,8 +61,12 @@
             <!-- Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
               <div>
-                <label for="{{ form.valid_record.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">有効記録</label>
-                <input type="number" name="valid_record" id="valid_record" step="0.01" min=0  class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                <label for="{{ form.heat.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">組</label>
+                <input type="text" name="heat" id="heat" required class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+              </div>
+              <div>
+                <label for="{{ form.place.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">順位</label>
+                <input type="text" name="place" id="place" required class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
               </div>
   
               {% comment %} <div>

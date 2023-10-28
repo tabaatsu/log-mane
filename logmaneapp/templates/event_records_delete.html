@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}大会の記録を削除{% endblock title %}
+
+{% block content %}
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
+          大会の記録を削除
+        </h1>
+        <p class="mt-1 text-gray-600 dark:text-gray-400">
+            以下の大会の記録を削除します。
+        </p>
+      </div>
+  
+      <div class="mt-12">
+        <!-- Form -->
+        <form method="POST">
+          {% csrf_token %}
+          <div class="grid gap-4 lg:gap-6">
+            <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">選手名</label>
+                {{ event_records.athlete_id }}
+            </div>
+            <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">種目</label>
+                {{ event_records.discipline }}
+            </div>
+            <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">大会名</label>
+                {{ event_records.event }}
+            </div>
+            <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">区分</label>
+                {{ event_records.division }}
+            </div>
+            <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">ラウンド</label>
+                {{ event_records.stage }}
+            </div>
+            <!-- Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+              <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">記録</label>
+                {{ event_records.record}}
+              </div>
+  
+              <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">風速</label>
+                {{ event_records.wind}}
+              </div>
+            </div>
+            <!-- End Grid -->
+  
+            <!-- Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+              <div>
+                <label class="block text-sm text-gray-700 font-medium dark:text-white">組</label>
+                {{ event_records.heat }}
+              </div>
+              <div>
+                <label for="{{ form.place.id_for_label }}" class="block text-sm text-gray-700 font-medium dark:text-white">順位</label>
+                {{ event_records.place }}
+              </div>
+            </div>
+            <!-- End Grid -->
+          <div class="mt-6 grid">
+            <button type="submit" class="inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800">削除</button>
+          </div>
+        </form>
+        <!-- End Form -->
+      </div>
+    </div>
+  </div>
+{% endblock content %}
