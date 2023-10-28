@@ -84,3 +84,9 @@ class EventDelete(DeleteView):
     template_name = 'event_delete.html'
     model = Event
     success_url = '/athlete/'
+
+class EventUpdate(UpdateView):
+    template_name = 'event_update.html'
+    model = Event
+    fields = (['event', 'date'])
+    success_url = '/athlete/'
