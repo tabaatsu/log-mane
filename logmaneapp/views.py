@@ -90,3 +90,7 @@ class EventUpdate(UpdateView):
     model = Event
     fields = (['event', 'date'])
     success_url = '/athlete/'
+
+class EventListView(ListView):
+    template_name = 'event_list.html'
+    model = Event
