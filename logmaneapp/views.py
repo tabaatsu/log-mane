@@ -2,7 +2,7 @@ from typing import Any
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Athlete, Discipline, Athlete_records, Event, Event_records
-from .forms import AthleteForm, AthleteRecordsForm, EventForm
+from .forms import AthleteForm, AthleteRecordsForm, EventForm, EventRecordsForm
 
 
 class IndexView(TemplateView):
@@ -94,3 +94,26 @@ class EventUpdate(UpdateView):
 class EventListView(ListView):
     template_name = 'event_list.html'
     model = Event
+
+def event_records_form(request):
+    if request.method == 'POST':
+        form = EventRecordsForm(request.POST)
+        if form.is_valid():
+            event_record = form.save(commit=False)
+            event_record.save()
+            return redirect('logmaneapp:athlete_list')
+    else:
+        form = EventRecordsForm()
+    context = {'form': form}
+    return render(request, 'event_records_form.html', context)
+
+class EventRecordsDelete(DeleteView):
+    template_name = 'event_records_delete.html'
+    model = Event_records
+    success_url = '/athlete/'
+
+class EventRecordsUpdate(UpdateView):
+    template_name = 'event_records_update.html'
+    model = Event_records
+    fields = (['event', 'division', 'discipline', 'stage', 'record', 'heat', 'place', 'wind'])
+    success_url = '/athlete/'
