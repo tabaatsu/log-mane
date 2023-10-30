@@ -82,7 +82,7 @@ class Event_records(models.Model):
 
 
     athlete_id = models.ForeignKey(Athlete, on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.PROTECT)
     discipline = models.ForeignKey(Discipline, on_delete=models.PROTECT)
     stage = models.ForeignKey(Stage, on_delete=models.PROTECT)
     record = models.DecimalField(verbose_name='記録', max_digits=10, decimal_places=2)
