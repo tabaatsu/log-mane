@@ -74,7 +74,7 @@ def event_form(request):
         form = EventForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('logmaneapp:athlete_list')
+            return redirect('logmaneapp:event_list')
     else:
         form = EventForm()
     context = {'form': form}
@@ -94,6 +94,10 @@ class EventUpdate(UpdateView):
 class EventListView(ListView):
     template_name = 'event_list.html'
     model = Event
+
+class EventRecordsListView(ListView):
+    template_name = 'event_records_list.html'
+    model = Event_records
 
 def event_records_form(request):
     if request.method == 'POST':

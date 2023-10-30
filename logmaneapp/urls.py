@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'logmaneapp'
 urlpatterns = [
-    path('', views.IndexView.as_view()),
+    path('', views.IndexView.as_view(), name='index'),
     path('athlete/', views.AthleteListView.as_view(), name='athlete_list'),
     path('athlete/<int:pk>/', views.AthleteDetailView.as_view(), name='athlete_detail'),
     path('athlete/create/', views.athlete_form, name='athlete_create'),
@@ -17,7 +17,8 @@ urlpatterns = [
     path('event/<int:pk>/delete/', views.EventDelete.as_view(), name='event_delete'),
     path('event/<int:pk>/update/', views.EventUpdate.as_view(), name='event_update'),
     path('event/', views.EventListView.as_view(), name='event_list'),
-    path('event/records/', views.event_records_form, name='event_records'),
+    path('event/records/', views.EventRecordsListView.as_view(), name='event_records_list'),
+    path('event/records/create/', views.event_records_form, name='event_records_create'),
     path('event/records/<int:pk>/delete/', views.EventRecordsDelete.as_view(), name='event_records_delete'),
     path('event/records/<int:pk>/update/', views.EventRecordsUpdate.as_view(), name='event_records_update'),
 ]

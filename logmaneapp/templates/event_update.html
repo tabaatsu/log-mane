@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}大会編集{% endblock title %}
+{% block title %}大会修正{% endblock title %}
 
 {% block content %}
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <div class="max-w-xl mx-auto">
       <div class="text-center">
         <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
-          大会情報の編集
+          大会情報の修正
         </h1>
         <p class="mt-1 text-gray-600 dark:text-gray-400">
-            {{ event.date}}に行われた{{ event.event }}の情報を編集してください。
+            {{ event.date}}に行われた{{ event.event }}の情報を修正してください。
         </p>
       </div>
 
@@ -21,11 +21,11 @@
           <div class="grid gap-4 lg:gap-6">
             <div>
               <label for="form.event_for_label" class="block text-sm text-gray-700 font-medium dark:text-white">大会名</label>
-              <input type="text" name="event" id="event" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+              <input type="text" name="event" id="event" value="{{ event.event }}" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
             </div>
             <div>
                 <label for="form.date.id_for_label" class="block text-sm text-gray-700 font-medium dark:text-white">日付</label>
-                <input type="date" name="date" id="date" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                <input type="date" name="date" id="date" value="{{ event.date }}" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
               </div>
 
           <div class="mt-6 grid">
