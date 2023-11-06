@@ -31,16 +31,16 @@ module.exports = {
          * patterns match your project structure.
          */
         /* JS 1: Ignore any JavaScript in node_modules folder. */
-        '!../../**/node_modules',
+        //'!../../**/node_modules',
         /* JS 2: Process all JavaScript files in the project. */
-        '../../**/*.js',
+        //'../../**/*.js',
 
         /**
          * Python: If you use Tailwind CSS classes in Python, uncomment the following line
          * and make sure the pattern below matches your project structure.
          */
         // '../../**/*.py'
-        'node_modules/preline/dist/*.js',
+        './node_modules/preline/dist/*.js',
     ],
     theme: {
         extend: {},
@@ -55,6 +55,6 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/aspect-ratio'),
-        require('preline/plugin')
+        require('preline/plugin'),
     ],
 }
