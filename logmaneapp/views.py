@@ -3,16 +3,18 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Athlete, Discipline, Athlete_records, Event, Event_records
 from .forms import AthleteForm, AthleteRecordsForm, EventForm, EventRecordsForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
-class IndexView(TemplateView):
+class IndexView(LoginRequiredMixin, TemplateView):
     template_name = 'index.html'
 
-class AthleteListView(ListView):
+class AthleteListView(LoginRequiredMixin, ListView):
     template_name = 'athlete_list.html'
     model = Athlete
 
-class AthleteDetailView(DetailView):
+class AthleteDetailView(LoginRequiredMixin, DetailView):
     template_name = 'athlete_detail.html'
     model = Athlete
 
@@ -24,6 +26,7 @@ class AthleteDetailView(DetailView):
 
     athlete = Athlete.objects.all()
 
+@login_required
 def athlete_form(request):
     if request.method == 'POST':
         form = AthleteForm(request.POST)
@@ -35,6 +38,7 @@ def athlete_form(request):
     context = {'form': form}
     return render(request, 'athlete_create.html', context)
 
+@login_required
 def athlete_records_form(request):
     if request.method == 'POST':
         form = AthleteRecordsForm(request.POST)
@@ -47,28 +51,29 @@ def athlete_records_form(request):
     context = {'form': form}
     return render(request, 'athlete_records_form.html', context)
 
-class AthleteDelete(DeleteView):
+class AthleteDelete(LoginRequiredMixin, DeleteView):
     template_name = 'athlete_delete.html'
     model = Athlete
     success_url = '/athlete/'
 
-class AthleteUpdate(UpdateView):
+class AthleteUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'athlete_update.html'
     model = Athlete
     fields = (['name', 'grade', 'gender', 'group'])
     success_url = '/athlete/'
 
-class AthleteRecordsDelete(DeleteView):
+class AthleteRecordsDelete(LoginRequiredMixin, DeleteView):
     template_name = 'athlete_records_delete.html'
     model = Athlete_records
     success_url = '/athlete/'
 
-class AthleteRecordsUpdate(UpdateView):
+class AthleteRecordsUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'athlete_records_update.html'
     model = Athlete_records
     fields = (['personal_best', 'university_best', 'valid_record'])
     success_url = '/athlete/'
 
+@login_required
 def event_form(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -80,25 +85,26 @@ def event_form(request):
     context = {'form': form}
     return render(request, 'event_create.html', context)
 
-class EventDelete(DeleteView):
+class EventDelete(LoginRequiredMixin, DeleteView):
     template_name = 'event_delete.html'
     model = Event
     success_url = '/athlete/'
 
-class EventUpdate(UpdateView):
+class EventUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'event_update.html'
     model = Event
     fields = (['event', 'date'])
     success_url = '/athlete/'
 
-class EventListView(ListView):
+class EventListView(LoginRequiredMixin, ListView):
     template_name = 'event_list.html'
     model = Event
 
-class EventRecordsListView(ListView):
+class EventRecordsListView(LoginRequiredMixin, ListView):
     template_name = 'event_records_list.html'
     model = Event_records
 
+@login_required
 def event_records_form(request):
     if request.method == 'POST':
         form = EventRecordsForm(request.POST)
@@ -111,12 +117,12 @@ def event_records_form(request):
     context = {'form': form}
     return render(request, 'event_records_form.html', context)
 
-class EventRecordsDelete(DeleteView):
+class EventRecordsDelete(LoginRequiredMixin, DeleteView):
     template_name = 'event_records_delete.html'
     model = Event_records
     success_url = '/athlete/'
 
-class EventRecordsUpdate(UpdateView):
+class EventRecordsUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'event_records_update.html'
     model = Event_records
     fields = (['event', 'division', 'discipline', 'stage', 'record', 'heat', 'place', 'wind'])
